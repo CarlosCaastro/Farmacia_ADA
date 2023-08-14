@@ -10,7 +10,9 @@ class Medicamento:
         self.laboratorio = laboratorio
         self.descricao = descricao
         self.necessita_receita = necessita_receita
-        self.__valor = valor
+        if not isinstance(valor, (float, int)):
+            raise ValueError("O valor do medicamento deve ser um número.")
+        self.__valor = float(valor)
 
     @property
     def get_valor(self) -> float:
