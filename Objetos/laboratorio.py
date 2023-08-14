@@ -13,7 +13,8 @@ class Laboratorio:
         
         self.nome = nome
         self.endereco = endereco
-        self.telefone = ddd + telefone
+        self.ddd = ddd
+        self.telefone = telefone
         self.cidade = cidade
         self.estado = estado
 
