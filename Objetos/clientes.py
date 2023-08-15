@@ -1,4 +1,5 @@
 from datetime import date,datetime
+import re
 
 class Cliente:
     '''
@@ -34,8 +35,9 @@ class Cliente:
     def __validador_cpf(self,cpf:str) -> bool:
         return len(cpf) == 11
     
-    def __validador_nome(self,nome:str) -> bool:
-        return nome.isalpha()
+    def __validador_nome(self, nome: str) -> bool:
+        regex = r'^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$'
+        return re.match(regex, nome) is not None
 
     def __transform_data(self,data) -> date:
         return datetime.strptime(data, '%d/%m/%Y').date()
