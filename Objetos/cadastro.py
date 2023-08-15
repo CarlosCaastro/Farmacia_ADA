@@ -56,8 +56,8 @@ class Cadastro:
             repr_str += f'CPF: {cpf}\n{cliente}\n'
         return repr_str
 
-    def mostrar_cadastro(cadastro) -> None:
-        cadastro_ordenado = sorted(cadastro.cadastro.values(), key=lambda objeto: objeto.nome)
+    def mostrar_cadastro(self) -> None:
+        cadastro_ordenado = sorted(self.cadastro.values(), key=lambda objeto: objeto.nome)
         
         print("Lista de Cadastrados (Ordenados por Nome):")
         for obj in cadastro_ordenado:
@@ -124,3 +124,9 @@ class CadastroLaboratorio(Cadastro):
             i += 1
             repr_str += f'Loja Cadastrada {i}: \n{labo}\n'
         return repr_str
+    
+    def mostrar_cadastro(self) -> None:
+        cadastro_ordenado = sorted(self.cadastros_labo.values(), key=lambda objeto: objeto.nome)
+        print("Lista de Cadastrados (Ordenados por Nome):")
+        for obj in cadastro_ordenado:
+            print(obj)
