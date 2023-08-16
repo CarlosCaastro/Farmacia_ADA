@@ -1,5 +1,7 @@
 from clientes import Cliente
 from laboratorio import Laboratorio
+from medicamentos import MedicamentoQuimioterapico, MedicamentoFitoterapico, Medicamento
+from vendas import Venda
 import re
 from datetime import date,datetime
 
@@ -130,3 +132,97 @@ class CadastroLaboratorio(Cadastro):
         print("Lista de Cadastrados (Ordenados por Nome):")
         for obj in cadastro_ordenado:
             print(obj)
+
+class CadastroMedicamento(Cadastro):
+    
+    def __init__(self) -> None:
+        self.cadastros_medicamentos = {}
+    
+    def cadastrar(self, nome: str, tipo: str, principal_composto: str, laboratorio: str, descricao: str, valor: float = 0.0) -> None:
+        chave = nome + laboratorio
+        if nome in self.cadastros_medicamentos:
+            print("Medicamento já cadastrado.")
+        else:
+            if tipo.lower() == "1":
+                medicamento = MedicamentoQuimioterapico(nome, principal_composto, laboratorio, descricao, valor)
+            elif tipo.lower() == "2":
+                medicamento = MedicamentoFitoterapico(nome, principal_composto, laboratorio, descricao, valor)
+            else:
+                raise ValueError("Tipo de medicamento inválido.")
+            self.cadastros_medicamentos[chave] = medicamento
+    
+    def alterar_cadastro(self, nome: str, laboratorio:str) -> None:
+        chave = nome + laboratorio
+        if nome not in self.cadastros_medicamentos:
+            print("Medicamento não cadastrado.")
+        
+        medicamento = self.cadastros_medicamentos[chave]
+        alteracao = int(input("""Digite o número referente ao que deseja Alterar:
+                1 - Alterar nome do Medicamento.
+                2 - Alterar Principal Composto.
+                3 - Alterar Laboratório.
+                4 - Alterar Descrição.
+                5 - Alterar Valor.
+                """))
+        
+        if alteracao == 1:
+            novo_nome = input('Digite o novo nome: ')
+            medicamento.nome = novo_nome
+        elif alteracao == 2:
+            novo_composto = input('Digite o novo composto: ')
+            medicamento.principal_composto = novo_composto
+        elif alteracao == 3:
+            novo_laboratorio = input('Digite o novo laboratório: ')
+            medicamento.laboratorio = novo_laboratorio
+        elif alteracao == 4:
+            nova_descricao = input('Digite a nova descrição: ')
+            medicamento.descricao = nova_descricao
+        elif alteracao == 5:
+            novo_valor = float(input('Digite o novo valor: '))
+            if not isinstance(novo_valor, (float, int)):
+                raise ValueError("O valor do medicamento deve ser um número.")
+            medicamento.set_valor = novo_valor
+        
+        self.cadastros_medicamentos[nome] = medicamento
+
+    def __repr__(self) -> str:
+        repr_str = ""
+        i = 0
+        for medicamento in self.cadastros_medicamentos.values():
+            i += 1
+            repr_str += f'Medicamento Cadastrado {i}: \n{medicamento}\n'
+        return repr_str
+    
+    def mostrar_cadastro(self) -> None:
+        cadastro_ordenado = sorted(self.cadastros_medicamentos.values(), key=lambda objeto: objeto.nome)
+        print("Lista de Medicamentos Cadastrados (Ordenados por Nome):")
+        for obj in cadastro_ordenado:
+            print(obj)
+
+class CadastroVenda(Cadastro):
+    def __init__(self):
+        super().__init__()
+        self.vendas = []
+
+    def realizar_venda(self, cpf_cliente: str, produtos: list[Medicamento]):
+        if cpf_cliente not in self.cadastro:
+            print("Cliente não cadastrado. Venda não pode ser realizada.")
+            return
+
+        cliente = self.cadastro[cpf_cliente]
+
+        venda = Venda(cliente, produtos)
+
+        if not venda.verificar_receita():
+            return
+
+        valor_final = venda.aplicar_descontos()
+        self.vendas.append(venda)
+        print("Venda realizada com sucesso!")
+        print("Valor Total da Venda:", venda.valor_total)
+        print("Valor Final com Descontos:", valor_final)
+
+    def emitir_relatorio_vendas(self):
+        for idx, venda in enumerate(self.vendas, start=1):
+            print(f"Venda {idx}:\n{venda}\n")
+
