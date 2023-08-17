@@ -204,12 +204,12 @@ class CadastroVenda(Cadastro):
         super().__init__()
         self.vendas = []
 
-    def realizar_venda(self, cpf_cliente: str, produtos: list[Medicamento]):
-        if cpf_cliente not in self.cadastro:
+    def realizar_venda(self, cadastro_cliente:Cadastro,cpf_cliente: str, produtos: list[Medicamento]):
+        if cpf_cliente not in cadastro_cliente.cadastro:
             print("Cliente não cadastrado. Venda não pode ser realizada.")
             return
 
-        cliente = self.cadastro[cpf_cliente]
+        cliente = cadastro_cliente.cadastro[cpf_cliente] #:Cliente
 
         venda = Vendas(cliente, produtos)
 
