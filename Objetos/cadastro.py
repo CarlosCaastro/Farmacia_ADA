@@ -139,7 +139,7 @@ class CadastroMedicamento(Cadastro):
         self.cadastros_medicamentos = {}
     
     def cadastrar(self, nome: str, tipo: str, principal_composto: str, laboratorio: str, descricao: str, valor: float = 0.0) -> None:
-        chave = nome + laboratorio
+        chave = nome
         if nome in self.cadastros_medicamentos:
             print("Medicamento já cadastrado.")
         else:
@@ -152,7 +152,7 @@ class CadastroMedicamento(Cadastro):
             self.cadastros_medicamentos[chave] = medicamento
     
     def alterar_cadastro(self, nome: str, laboratorio:str) -> None:
-        chave = nome + laboratorio
+        chave = nome
         if nome not in self.cadastros_medicamentos:
             print("Medicamento não cadastrado.")
         
@@ -183,7 +183,7 @@ class CadastroMedicamento(Cadastro):
                 raise ValueError("O valor do medicamento deve ser um número.")
             medicamento.set_valor = novo_valor
         
-        self.cadastros_medicamentos[nome] = medicamento
+        self.cadastros_medicamentos[chave] = medicamento
 
     def __repr__(self) -> str:
         repr_str = ""
@@ -211,7 +211,7 @@ class CadastroVenda(Cadastro):
 
         cliente = self.cadastro[cpf_cliente]
 
-        venda = Venda(cliente, produtos)
+        venda = Vendas(cliente, produtos)
 
         if not venda.verificar_receita():
             return
