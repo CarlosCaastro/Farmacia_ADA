@@ -1,7 +1,7 @@
 from clientes import Cliente
 from laboratorio import Laboratorio
 from medicamentos import MedicamentoQuimioterapico, MedicamentoFitoterapico, Medicamento
-from vendas import Venda
+from vendas import Vendas
 import re
 from datetime import date,datetime
 
