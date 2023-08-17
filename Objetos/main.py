@@ -79,7 +79,7 @@ while True:
                 produtos.append(cadastro_medicamentos.cadastros_medicamentos[nome_produto])
             else:
                 print("Medicamento não cadastrado.")
-        cadastro_vendas.realizar_venda(cpf_cliente, produtos)
+        cadastro_vendas.realizar_venda(cadastro_cliente = cadastro_clientes, cpf_cliente = cpf_cliente, produtos = produtos)
 
     elif opcao == "8":
         print("\n===== Relatórios =====")
