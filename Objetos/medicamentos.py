@@ -35,6 +35,10 @@ class MedicamentoQuimioterapico(Medicamento):
     def __repr__(self) -> str:
         return f'Nome: {self.nome}\nPrincipal Composto: {self.principal_composto}\nLaboratório: {self.laboratorio}\nDescrição: {self.descricao}\nNecessita Receita: {self.necessita_receita}\nValor: {self.get_valor:.2f}'
     
+    @property
+    def get_valor(self) -> float:
+        return self._Medicamento__valor
+
     @Medicamento.set_valor.setter
     def valor(self, novo_valor: float) -> None:
         if novo_valor >= 0:
@@ -46,6 +50,10 @@ class MedicamentoFitoterapico(Medicamento):
     def __init__(self, nome: str, principal_composto: str, laboratorio: str, descricao: str, valor: float = 0.0) -> None:
         super().__init__(nome, principal_composto, laboratorio, descricao, valor)
     
+    @property
+    def get_valor(self) -> float:
+        return self._Medicamento__valor
+
     @Medicamento.set_valor.setter
     def valor(self, novo_valor: float) -> None:
         if novo_valor >= 0:

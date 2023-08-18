@@ -1,6 +1,9 @@
 from datetime import date,datetime
 import re
 
+PADRAO_CPF = 11
+VALIDADOR_NOME = r'^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$'
+
 class Cliente:
     '''
     A classe cliente irá receber informações de CPF no formato xxxxxxxxxxx, sem caracteres especiais ou caracteres de texo.
@@ -33,11 +36,10 @@ class Cliente:
         return ''.join(filter(str.isdigit,cpf))
 
     def __validador_cpf(self,cpf:str) -> bool:
-        return len(cpf) == 11
+        return len(cpf) == PADRAO_CPF
     
     def __validador_nome(self, nome: str) -> bool:
-        regex = r'^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$'
-        return re.match(regex, nome) is not None
+        return re.match(VALIDADOR_NOME, nome) is not None
 
     def __transform_data(self,data) -> date:
         return datetime.strptime(data, '%d/%m/%Y').date()

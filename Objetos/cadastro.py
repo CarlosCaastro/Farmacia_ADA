@@ -5,6 +5,11 @@ from vendas import Vendas
 import re
 from datetime import date,datetime
 
+TAMANHO_TEL = 9
+DDD = 3
+QUIMO = '1'
+FITO = '2'
+
 class Cadastro:
     '''
     A ideia dessa classe é armazenar tudo que foi feito nas outras classes, clientes, vendas e medicamentos.
@@ -104,10 +109,10 @@ class CadastroLaboratorio(Cadastro):
                 raise ValueError("O DDD deve conter exatamente dois caracteres.")
             elif novo_ddd == "00":
                 raise ValueError("O DDD não pode ser '00'.")
-            labo.ddd = novo_ddd.zfill(3)
+            labo.ddd = novo_ddd.zfill(DDD)
         elif alteracao == 4:
             novo_telefone = input('Digite o novo Telefone: ')
-            if len(novo_telefone) != 9:
+            if len(novo_telefone) != TAMANHO_TEL:
                 raise ValueError("O numero de telefone precisa conter nove caracteres. Verifique se não esqueceu de colocar o digito 9 na frente.")
             labo.telefone = novo_telefone
         elif alteracao == 5:
@@ -143,15 +148,15 @@ class CadastroMedicamento(Cadastro):
         if nome in self.cadastros_medicamentos:
             print("Medicamento já cadastrado.")
         else:
-            if tipo.lower() == "1":
+            if tipo.lower() == QUIMO:
                 medicamento = MedicamentoQuimioterapico(nome, principal_composto, laboratorio, descricao, valor)
-            elif tipo.lower() == "2":
+            elif tipo.lower() == FITO:
                 medicamento = MedicamentoFitoterapico(nome, principal_composto, laboratorio, descricao, valor)
             else:
                 raise ValueError("Tipo de medicamento inválido.")
             self.cadastros_medicamentos[chave] = medicamento
     
-    def alterar_cadastro(self, nome: str, laboratorio:str) -> None:
+    def alterar_cadastro(self, nome: str) -> None:
         chave = nome
         if nome not in self.cadastros_medicamentos:
             print("Medicamento não cadastrado.")
