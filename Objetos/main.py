@@ -108,7 +108,9 @@ while True:
                 if isinstance(medicamento, MedicamentoFitoterapico):
                     print(medicamento)
         elif relatorio_opcao == "6":
-            print(cadastro_vendas.vendas)
+            atendimento_atual = Atendimento()
+            atendimento_atual.calcular_estatisticas(cadastro_vendas.vendas)
+            atendimento_atual.exibir_estatisticas()
         elif relatorio_opcao == "0":
             continue
 

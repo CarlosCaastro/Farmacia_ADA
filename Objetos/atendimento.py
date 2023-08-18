@@ -1,4 +1,5 @@
 from medicamentos import MedicamentoQuimioterapico, MedicamentoFitoterapico
+from vendas import Vendas
 
 class Atendimento:
     def __init__(self):
@@ -7,7 +8,7 @@ class Atendimento:
         self.total_quimioterapicos = 0
         self.total_fitoterapicos = 0
 
-    def calcular_estatisticas(self, vendas):
+    def calcular_estatisticas(self, vendas:Vendas):
         for venda in vendas:
             for produto in venda.produtos:
                 if produto.nome in self.produtos_vendidos:
@@ -32,7 +33,7 @@ class Atendimento:
         print(f"{mais_vendido}: Quantidade: {quantidade_mais_vendido}, Valor Total: R${valor_total_mais_vendido:.2f}")
 
         print("Quantidade de pessoas atendidas:", self.pessoas_atendidas)
-        print("Número de remédios Quimioterápicos vendidos:", self.total_quimioterapicos)
-        print("Número de remédios Fitoterápicos vendidos:", self.total_fitoterapicos)
+        print("\nNúmero de remédios Quimioterápicos vendidos:", self.total_quimioterapicos)
+        print("\nNúmero de remédios Fitoterápicos vendidos:", self.total_fitoterapicos)
 
         print("===== Fim do Relatório =====")
