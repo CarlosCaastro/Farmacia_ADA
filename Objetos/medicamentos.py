@@ -28,12 +28,12 @@ class Medicamento:
         return f'Nome: {self.nome}\nPrincipal Composto: {self.principal_composto}\nLaboratório: {self.laboratorio}\nDescrição: {self.descricao}\nValor: {self.__valor:.2f}'
     
 class MedicamentoQuimioterapico(Medicamento):
-    def __init__(self, nome: str, principal_composto: str, laboratorio: str, descricao: str, necessita_receita: str = "Sim", valor: float = 0.0) -> None:
+    def __init__(self, nome: str, principal_composto: str, laboratorio: str, descricao: str, valor: float = 0.0, necessita_receita:str = "Sim") -> None:
         self.necessita_receita = necessita_receita
         super().__init__(nome, principal_composto, laboratorio, descricao, valor)
-
+        
     def __repr__(self) -> str:
-        return f'Nome: {self.nome}\nPrincipal Composto: {self.principal_composto}\nLaboratório: {self.laboratorio}\nDescrição: {self.descricao}\nNecessita Receita: {self.necessita_receita}\nValor: {self.get_valor:.2f}'
+        return f'Nome: {self.nome}\nPrincipal Composto: {self.principal_composto}\nLaboratório: {self.laboratorio}\nDescrição: {self.descricao}\nValor: {self.get_valor:.2f}\nNecessita Receita: {self.necessita_receita}'
     
     @property
     def get_valor(self) -> float:
