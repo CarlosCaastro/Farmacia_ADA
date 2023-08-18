@@ -25,6 +25,9 @@ while True:
 
     if opcao == "0":
         print("Encerrando o programa.")
+        atendimento_atual = Atendimento()
+        atendimento_atual.calcular_estatisticas(cadastro_vendas.vendas)
+        atendimento_atual.exibir_estatisticas()
         break
 
     elif opcao == "1":

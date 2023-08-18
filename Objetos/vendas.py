@@ -2,6 +2,9 @@ from datetime import datetime
 from medicamentos import Medicamento,MedicamentoQuimioterapico
 from clientes import Cliente
 
+DESCONTO_IDADE = 0.2
+DESCONTO_VALOR = 0.1
+
 class Vendas:
     def __init__(self, cliente:Cliente, produtos: list[Medicamento]):
         self.cliente = cliente
@@ -20,9 +23,9 @@ class Vendas:
         valor_desconto = 0.0
         
         if idade > 65:
-            valor_desconto = self.valor_total * 0.2
+            valor_desconto = self.valor_total * DESCONTO_IDADE
         if self.valor_total > 150:
-            valor_desconto = max(valor_desconto, self.valor_total * 0.1)
+            valor_desconto = max(valor_desconto, self.valor_total * DESCONTO_VALOR)
         
         valor_final = self.valor_total - valor_desconto
         return valor_final
@@ -38,4 +41,4 @@ class Vendas:
     
     def __repr__(self) -> str:
         produtos_descricao = ", ".join(produto.nome for produto in self.produtos)
-        return f"Data/Hora: {self.data_hora}\nCliente: {self.cliente.nome}\nValor Total: R${self.valor_com_desconto:.2f}\nProdutos: {produtos_descricao}"
+        return f"\nData/Hora: {self.data_hora}\nCliente: {self.cliente.nome}\nValor Total: R${self.valor_com_desconto:.2f}\nProdutos: {produtos_descricao}"

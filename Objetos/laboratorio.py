@@ -1,3 +1,7 @@
+DDD_FULL = 3
+DDD = 2
+TAMANHO_TEL = 9
+
 class Laboratorio:
     '''
     Classe para gerar os objetos de laboratório.
@@ -5,18 +9,18 @@ class Laboratorio:
 
     def __init__(self, nome: str, endereco: str, ddd:str,telefone: str, cidade: str, estado: str) -> None:
 
-        if len(ddd) != 2:
+        if len(ddd) != DDD:
             raise ValueError("O DDD deve conter exatamente dois caracteres.")
         
         elif ddd == "00":
             raise ValueError("O DDD não pode ser '00'.")
 
-        elif len(telefone) != 9:
+        elif len(telefone) != TAMANHO_TEL:
             raise ValueError("O numero de telefone precisa conter nove caracteres. Verifique se não esqueceu de colocar o digito 9 na frente.")
         
         self.nome = nome
         self.endereco = endereco
-        self.ddd = ddd.zfill(3)
+        self.ddd = ddd.zfill(DDD_FULL)
         self.telefone = telefone
         self.cidade = cidade
         self.estado = estado
