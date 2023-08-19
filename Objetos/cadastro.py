@@ -1,7 +1,7 @@
-from clientes import Cliente
-from laboratorio import Laboratorio
-from medicamentos import MedicamentoQuimioterapico, MedicamentoFitoterapico, Medicamento
-from vendas import Vendas
+from .clientes import Cliente
+from .laboratorio import Laboratorio
+from .medicamentos import MedicamentoQuimioterapico, MedicamentoFitoterapico, Medicamento
+from .vendas import Vendas
 import re
 from datetime import date,datetime
 
@@ -215,7 +215,7 @@ class CadastroVenda(Cadastro):
             print("Cliente não cadastrado. Venda não pode ser realizada.")
             return
 
-        cliente = cadastro_cliente.cadastro[cpf_cliente] #:Cliente
+        cliente = cadastro_cliente.cadastro[cpf_cliente]
 
         venda = Vendas(cliente, produtos)
 

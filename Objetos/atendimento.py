@@ -1,5 +1,5 @@
-from medicamentos import MedicamentoQuimioterapico, MedicamentoFitoterapico
-from vendas import Vendas
+from .medicamentos import MedicamentoQuimioterapico, MedicamentoFitoterapico
+from .vendas import Vendas
 
 class Atendimento:
     def __init__(self):
