@@ -1,5 +1,5 @@
 from Objetos.cadastro import Cadastro, CadastroMedicamento, CadastroVenda, CadastroLaboratorio
-from Objetos.medicamentos import MedicamentoQuimioterapico, MedicamentoFitoterapico
+from Objetos.medicamentos import Medicamento,MedicamentoQuimioterapico, MedicamentoFitoterapico
 from Objetos.atendimento import Atendimento
 
 def exibir_menu():
@@ -12,6 +12,7 @@ def exibir_menu():
     print("6. Alterar Cadastro de Medicamento")
     print("7. Realizar Venda")
     print("8. Relatórios")
+    print("9. Pesquisas")
     print("0. Sair")
 
 cadastro_clientes = Cadastro()
@@ -113,6 +114,35 @@ while True:
             atendimento_atual.exibir_estatisticas()
         elif relatorio_opcao == "0":
             continue
+    elif opcao == "9":
+        print("\n===== Opções de Pesquisa =====")
+        print("1. Pesquisar por Nome de Medicamento")
+        print("2. Pesquisar por Nome de Laboratório")
+        print("3. Pesquisar por Descrição Parcial de Medicamento")
+        print("0. Voltar")
 
+        pesquisa_opcao = input("Escolha uma opção de pesquisa: ")
+
+        if pesquisa_opcao == "1":
+            nome_pesquisa = input("Digite o nome do medicamento para pesquisar: ")
+            resultados_pesquisa = Medicamento.buscar_por_nome(cadastro_medicamentos.cadastros_medicamentos.values(), nome_pesquisa)
+        elif pesquisa_opcao == "2":
+            laboratorio_pesquisa = input("Digite o nome do laboratório para pesquisar: ")
+            resultados_pesquisa = Medicamento.buscar_por_fabricante(cadastro_medicamentos.cadastros_medicamentos.values(), laboratorio_pesquisa)
+        elif pesquisa_opcao == "3":
+            descricao_pesquisa = input("Digite a descrição parcial do medicamento para pesquisar: ")
+            resultados_pesquisa = Medicamento.buscar_por_descricao_parcial(cadastro_medicamentos.cadastros_medicamentos.values(), descricao_pesquisa)
+        elif pesquisa_opcao == "0":
+            continue
+        else:
+            print("Opção inválida. Digite um número entre 0 e 3.")
+            continue
+
+        if resultados_pesquisa:
+            print("Resultados da pesquisa:")
+            for resultado in resultados_pesquisa:
+                print(resultado)
+        else:
+            print("Nenhum resultado encontrado para a pesquisa.")
     else:
         print("Opção inválida. Digite um número entre 0 e 8.")

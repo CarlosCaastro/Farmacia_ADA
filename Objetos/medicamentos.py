@@ -24,6 +24,30 @@ class Medicamento:
         else:
             print("O valor do medicamento não pode ser negativo.")
     
+    @classmethod
+    def buscar_por_nome(cls, medicamentos, nome):
+        resultados = []
+        for medicamento in medicamentos:
+            if nome.lower() in medicamento.nome.lower():
+                resultados.append(medicamento)
+        return resultados
+    
+    @classmethod
+    def buscar_por_fabricante(cls, medicamentos, fabricante):
+        resultados = []
+        for medicamento in medicamentos:
+            if fabricante.lower() in medicamento.laboratorio.lower():
+                resultados.append(medicamento)
+        return resultados
+    
+    @classmethod
+    def buscar_por_descricao_parcial(cls, medicamentos, descricao):
+        resultados = []
+        for medicamento in medicamentos:
+            if descricao.lower() in medicamento.descricao.lower():
+                resultados.append(medicamento)
+        return resultados
+
     def __repr__(self) -> str:
         return f'Nome: {self.nome}\nPrincipal Composto: {self.principal_composto}\nLaboratório: {self.laboratorio}\nDescrição: {self.descricao}\nValor: {self.__valor:.2f}'
     

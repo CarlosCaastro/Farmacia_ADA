@@ -1,0 +1,10 @@
+/git
+**/.ssh/*
+*.workspace
+**/*.pyc
+/venv
+venv
+*.ipynb
+.env
+.venv
+.vscode/*
