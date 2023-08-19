@@ -1,5 +1,6 @@
 DDD_FULL = 3
 DDD = 2
+DDD_NULL = '00'
 TAMANHO_TEL = 9
 
 class Laboratorio:
@@ -12,7 +13,7 @@ class Laboratorio:
         if len(ddd) != DDD:
             raise ValueError("O DDD deve conter exatamente dois caracteres.")
         
-        elif ddd == "00":
+        elif ddd == DDD_NULL:
             raise ValueError("O DDD não pode ser '00'.")
 
         elif len(telefone) != TAMANHO_TEL:

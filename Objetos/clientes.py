@@ -19,11 +19,11 @@ class Cliente:
         else:
             raise ValueError ("CPF inválido. Digite somente os números do CPF ou complete o CPF.")
         
-        if not self.__validador_nome(nome):
-            raise ValueError("Nome inválido. Digite o nome, sem nenhum  número e sem caracter especial.")
-        else:
+        if self.__validador_nome(nome):
             self.nome = nome
-
+        else:
+            raise ValueError("Nome inválido. Digite o nome, sem nenhum  número e sem caracter especial.")
+            
         try:
             self.data_nascimento = self.__transform_data(data_nascimento)
         except ValueError:
@@ -31,13 +31,13 @@ class Cliente:
 
     def __repr__(self) -> str:
         return f'CPF: {self.cpf}\nNome: {self.nome}\nData de Nascimento: {self.data_nascimento}'
-    
+
     def __normalizador_cpf (self,cpf:str) -> str:
         return ''.join(filter(str.isdigit,cpf))
 
     def __validador_cpf(self,cpf:str) -> bool:
         return len(cpf) == PADRAO_CPF
-    
+
     def __validador_nome(self, nome: str) -> bool:
         return re.match(VALIDADOR_NOME, nome) is not None
 

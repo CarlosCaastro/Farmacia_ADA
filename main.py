@@ -1,6 +1,6 @@
-from cadastro import Cadastro, CadastroMedicamento, CadastroVenda, CadastroLaboratorio
-from medicamentos import MedicamentoQuimioterapico, MedicamentoFitoterapico
-from atendimento import Atendimento
+from Objetos.cadastro import Cadastro, CadastroMedicamento, CadastroVenda, CadastroLaboratorio
+from Objetos.medicamentos import MedicamentoQuimioterapico, MedicamentoFitoterapico
+from Objetos.atendimento import Atendimento
 
 def exibir_menu():
     print("\n===== Menu =====")
