@@ -1,0 +1,1 @@
+from Objetos import cadastro

@@ -6,7 +6,8 @@ import re
 from datetime import date,datetime
 
 TAMANHO_TEL = 9
-DDD = 3
+DDD_FULL = 3
+DDD = 2
 QUIMO = '1'
 FITO = '2'
 
@@ -105,11 +106,11 @@ class CadastroLaboratorio(Cadastro):
             labo.endereco = novo_endereco
         elif alteracao == 3:
             novo_ddd = input('Digite o novo DDD: ')
-            if len(novo_ddd) != 2:
+            if len(novo_ddd) != DDD:
                 raise ValueError("O DDD deve conter exatamente dois caracteres.")
             elif novo_ddd == "00":
                 raise ValueError("O DDD não pode ser '00'.")
-            labo.ddd = novo_ddd.zfill(DDD)
+            labo.ddd = novo_ddd.zfill(DDD_FULL)
         elif alteracao == 4:
             novo_telefone = input('Digite o novo Telefone: ')
             if len(novo_telefone) != TAMANHO_TEL:
