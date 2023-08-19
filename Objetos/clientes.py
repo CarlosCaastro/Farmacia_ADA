@@ -30,7 +30,8 @@ class Cliente:
             raise ValueError("Data inválida. Digite a data no formato dd/mm/yyyy")
 
     def __repr__(self) -> str:
-        return f'CPF: {self.cpf}\nNome: {self.nome}\nData de Nascimento: {self.data_nascimento}'
+        masked_cpf = self.cpf[:3] + '*' * (PADRAO_CPF - 5) + self.cpf[-2:]
+        return f'CPF: {masked_cpf}\nNome: {self.nome}\nData de Nascimento: {self.data_nascimento}'
 
     def __normalizador_cpf (self,cpf:str) -> str:
         return ''.join(filter(str.isdigit,cpf))
@@ -43,3 +44,11 @@ class Cliente:
 
     def __transform_data(self,data) -> date:
         return datetime.strptime(data, '%d/%m/%Y').date()
+    
+    @classmethod
+    def buscar_por_cpf(cls, lista_clientes, cpf_busca):
+        cpf_busca = cls.__normalizador_cpf(cpf_busca)
+        for cliente in lista_clientes:
+            if cliente.cpf == cpf_busca:
+                return cliente
+        return None

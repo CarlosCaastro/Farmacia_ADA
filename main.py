@@ -114,6 +114,7 @@ while True:
             atendimento_atual.exibir_estatisticas()
         elif relatorio_opcao == "0":
             continue
+        
     elif opcao == "9":
         print("\n===== Opções de Pesquisa =====")
         print("1. Pesquisar por Nome de Medicamento")

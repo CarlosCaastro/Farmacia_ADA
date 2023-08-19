@@ -60,8 +60,8 @@ class Cadastro:
 
     def __repr__(self) -> str:
         repr_str = ""
-        for cpf, cliente in self.cadastro.items():
-            repr_str += f'CPF: {cpf}\n{cliente}\n'
+        for cliente in self.cadastro.values():
+            repr_str += f'Cadastro: \n{cliente}\n'
         return repr_str
 
     def mostrar_cadastro(self) -> None:
