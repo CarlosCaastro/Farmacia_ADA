@@ -4,6 +4,8 @@ from .clientes import Cliente
 
 DESCONTO_IDADE = 0.2
 DESCONTO_VALOR = 0.1
+IDOSO = 65
+VLR_VENDA = 150
 
 class Vendas:
 
@@ -23,9 +25,9 @@ class Vendas:
         idade = self.calcular_idade()
         valor_desconto = 0.0
 
-        if idade > 65:
+        if idade > IDOSO:
             valor_desconto = self.valor_total * DESCONTO_IDADE
-        if self.valor_total > 150:
+        if self.valor_total > VLR_VENDA:
             valor_desconto = max(valor_desconto, self.valor_total * DESCONTO_VALOR)
         
         valor_final = self.valor_total - valor_desconto
